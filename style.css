@@ -5,18 +5,33 @@
 }
 
 body {
-    background: url("Beauty.png");
+    background: url("images/level1.png");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100vw;
+    object-fit: cover;
+    overflow: hidden;
     background-position: center;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-
+    backdrop-filter: blur(10px);
 }
+
 
 .container {
     position: relative;
+    background: url("images/level1.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    overflow-x: hidden;
+    background-position: center;
+    margin: auto;
+    width: auto;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 10;
 }
 
 .cursor,
@@ -27,13 +42,24 @@ body {
     z-index: 3;
     transform: translate(-50%, -50%);
     pointer-events: none;
+
+}
+
+.mute-button-picture {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    z-index: 100;
+    cursor: pointer;
 }
 
 .blood {
     z-index: 10;
 }
 
-button {
+.start-game {
     border-radius: 20px;
     font-size: 35px;
     padding: 20px;
@@ -48,7 +74,6 @@ button {
     height: 150px;
     position: absolute;
     left: 50%;
-    /* transform: translate(-50%, 150%); */
     transform: translate(-50%, 350%);
     z-index: 2;
     transition: all 1s;
