@@ -7,7 +7,7 @@ shot = document.querySelector('.shot');
 
 score = 0;
 screenWidth = body.offsetWidth;
-screenHeight = body.offsetHeight;
+// screenHeight = body.offsetHeight;
 
 button.addEventListener('click', function () {
   window.addEventListener('mousemove', function (e) {
@@ -38,7 +38,7 @@ button.addEventListener('click', function () {
 
   setInterval(function () {
     if (duck.style.display !== 'none') {
-      randTop = Math.random() * (screenHeight - 150);
+      //   randTop = Math.random() * (screenHeight - 150);
       randleft = Math.random() * (screenWidth - 150);
       duck.style.left = randleft + 'px';
       duck.style.top = randTop + 'px';
