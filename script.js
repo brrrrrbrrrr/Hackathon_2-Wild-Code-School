@@ -19,7 +19,7 @@ const container = document.querySelector('.container');
 
 let score = 0;
 let currentLevel = 1;
-let targetScore = 1;
+let targetScore = 10;
 
 const screenWidth = body.offsetWidth;
 
@@ -74,7 +74,7 @@ startButton.addEventListener('click', function () {
             } else {
                 if (currentLevel < 10) {
                     currentLevel++;
-                    targetScore++;
+                    targetScore += 5;
                     score = 0;
                     startButton.innerHTML = "Level " + currentLevel + " Score " + score;
                     container.style.backgroundImage = `url(images/level${currentLevel}.png)`;
