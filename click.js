@@ -60,7 +60,7 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
   img.style.top = `${distance}%`;
   img.style.width = `${width}px`;
   img.style.height = `${height}px`;
-  img.style.zIndex = 1;
+  img.style.zIndex = 20;
 
   img.addEventListener('click', function (e) {
     blood.style.display = 'block';
