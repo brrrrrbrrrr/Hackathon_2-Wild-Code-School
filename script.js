@@ -1,6 +1,7 @@
 cursor = document.querySelector('.cursor');
 blood = document.querySelector('.blood');
-duck = document.querySelector('.duck');
+zombie = document.querySelector('.zombie');
+zombieWalk= document.querySelector('.zombieWalk');
 body = document.querySelector('body');
 button = document.querySelector('button');
 shot = document.querySelector('.shot');
@@ -19,7 +20,7 @@ button.addEventListener('click', function () {
   window.addEventListener('click', function (e) {
     shot.play();
 
-    if (e.target.classList.contains('duck')) {
+    if (e.target.classList.contains('zombie')) {
       blood.style.display = 'block';
       blood.style.left = e.pageX + 'px';
       blood.style.top = e.pageY + 'px';
@@ -29,19 +30,85 @@ button.addEventListener('click', function () {
       score++;
       button.innerHTML = 'Score ' + score;
       shot.play();
-      duck.style.display = 'none';
-      this.setTimeout(function () {
-        duck.style.display = 'block';
-      }, 1000);
-    }
+        zombie.style.display = 'none';
+       
+       
+      }
+      
   });
 
-  setInterval(function () {
-    if (duck.style.display !== 'none') {
-      //   randTop = Math.random() * (screenHeight - 150);
-      randleft = Math.random() * (screenWidth - 150);
-      duck.style.left = randleft + 'px';
-      duck.style.top = randTop + 'px';
-    }
+  let zombieDistance = parseInt(zombie.style.top);
+  let zombieWidth = parseInt(zombie.style.width);
+  let zombieHeight = parseInt(zombie.style.height);
+
+  if (isNaN(zombieDistance)) {
+    //   zombieDistance = 39;
+    zombieDistance = 55;
+  }
+
+  if (isNaN(zombieWidth)) {
+    zombieWidth = 50;
+  }
+
+  if (isNaN(zombieHeight)) {
+    zombieHeight = 50;
+  }
+
+  const updateZombieDistance = () => {
+    zombieDistance += 1;
+    zombieWidth += 20;
+    zombieHeight += 20;
+    zombie.style.top = `${zombieDistance}%`;
+    zombie.style.width = `${zombieWidth}px`;
+    zombie.style.height = `${zombieHeight}px`;
+  };
+
+  setInterval(updateZombieDistance, 1000);
+
+  zombie.classList.add('zombie-walk');
+
+    const zombieMaker = (distance = 55, width = 50, height = 50) => {
+        
+     
+    let img = document.createElement('img');
+    img.src = 'clicker.png';
+    document.body.appendChild(img);
+    img.classList.add('zombie');
+    img.classList.add('zombie-walk');
+    img.style.left = 20 + Math.random() * 50 + '%';
+    img.style.top = `${distance}%`;
+    img.style.width = `${width}px`;
+    img.style.height = `${height}px`;
+        img.style.zIndex = 1;
+        
+       
+           
+        img.addEventListener('click', function (e) {
+          blood.style.display = 'block';
+          blood.style.left = e.pageX + 'px';
+          blood.style.top = e.pageY + 'px';
+          setTimeout(function () {
+            blood.style.display = 'none';
+          }, 500);
+          score++;
+          button.innerHTML = 'Score ' + score;
+          shot.play();
+          img.style.display = 'none';
+        });
+
+    const updateZombieDistance = () => {
+      distance += 1;
+      width += 20;
+      height += 20;
+      img.style.top = `${distance}%`;
+      img.style.width = `${width}px`;
+      img.style.height = `${height}px`;
+    };
+
+    setInterval(updateZombieDistance, 1000);
+  };
+
+  setInterval(() => {
+    zombieMaker();
   }, 1000);
 });
