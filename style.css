@@ -5,18 +5,18 @@
 }
 
 body {
-  background: url('Beauty.png');
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+    background: url("Beauty.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+     position: relative;
+   
+
 }
 
-.container {
-  position: relative;
-}
 
 .cursor,
 .blood {
@@ -54,15 +54,26 @@ button {
   z-index: 1;
 }
 
-.duck {
-  width: 150px;
-  height: 150px;
+
+.zombie {
+  width: 50px;
+  height: 50px;
   position: absolute;
   left: 50%;
-  /* transform: translate(-50%, 150%); */
-  transform: translate(-50%, 350%);
+  /* top:38%; */
+  top:55%;
+  transform: translate(-50%,-50%);
   z-index: 2;
-  transition: all 1s;
+}
+
+.zombie-walk {
+  animation: zombie-walk 2s ease-in-out infinite;
+}
+
+@keyframes zombie-walk {
+  0% { transform: translateX(-50%); } 
+  50% { transform: translateX(-20%); }
+  100% { transform: translateX(-50%); } 
 }
 
 .bullet {
