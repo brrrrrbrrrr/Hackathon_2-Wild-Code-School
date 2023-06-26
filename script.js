@@ -36,6 +36,10 @@ button.addEventListener('click', function () {
         button.innerHTML = 'Score ' + score;
         if (munitionsRestantes > 0) {
           shot.play();
+          duck.style.display = 'none';
+          this.setTimeout(function () {
+            duck.style.display = 'block';
+          }, 1000);
         }
       }
 
