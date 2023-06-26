@@ -14,7 +14,18 @@ let totalMunitions = 10;
 let munitionsRestantes = totalMunitions;
 
 const munitionCounter = document.getElementById('munition-counter');
-munitionCounter.textContent = 'Munitions: ' + munitionsRestantes;
+munitionCounter.textContent = munitionsRestantes;
+
+function addMunitionIcons() {
+  const munitionContainer = document.querySelector('.munition-container');
+  munitionContainer.innerHTML = '';
+
+  for (let i = 0; i < munitionsRestantes; i++) {
+    const smallBulletIcon = document.createElement('div');
+    smallBulletIcon.classList.add('small-bullet');
+    munitionContainer.appendChild(smallBulletIcon);
+  }
+}
 
 button.addEventListener('click', function () {
   window.addEventListener('mousemove', function (e) {
@@ -29,6 +40,7 @@ button.addEventListener('click', function () {
         blood.style.display = 'block';
         blood.style.left = e.pageX + 'px';
         blood.style.top = e.pageY + 'px';
+
         setTimeout(function () {
           blood.style.display = 'none';
         }, 500);
@@ -44,7 +56,8 @@ button.addEventListener('click', function () {
       }
 
       munitionsRestantes--;
-      munitionCounter.textContent = 'Munitions: ' + munitionsRestantes;
+      munitionCounter.textContent = munitionsRestantes;
+      addMunitionIcons(); // Mettre à jour les icônes de small-bullet
     }
 
     if (
@@ -52,9 +65,10 @@ button.addEventListener('click', function () {
       bullet.style.display === 'block'
     ) {
       munitionsRestantes += 5;
-      munitionCounter.textContent = 'Munitions: ' + munitionsRestantes;
+      munitionCounter.textContent = munitionsRestantes;
       bullet.style.display = 'none';
       reload.play();
+      addMunitionIcons(); // Mettre à jour les icônes de small-bullet
     } else if (munitionsRestantes > 0) {
       shot.play();
     }
@@ -79,3 +93,4 @@ function displayBullet() {
 }
 
 displayBullet();
+addMunitionIcons(); // Ajouter les icônes de small-bullet initiales
