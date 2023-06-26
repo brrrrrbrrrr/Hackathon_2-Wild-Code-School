@@ -1,14 +1,15 @@
-cursor = document.querySelector('.cursor');
-blood = document.querySelector('.blood');
-duck = document.querySelector('.duck');
-body = document.querySelector('body');
-button = document.querySelector('button');
-shot = document.querySelector('.shot');
-bullet = document.querySelector('.bullet');
+const cursor = document.querySelector('.cursor');
+const blood = document.querySelector('.blood');
+const duck = document.querySelector('.duck');
+const body = document.querySelector('body');
+const button = document.querySelector('button');
+const shot = document.querySelector('.shot');
+const bullet = document.querySelector('.bullet');
+const reload = document.querySelector('.reload');
 
-score = 0;
-screenWidth = body.offsetWidth;
-screenHeight = body.offsetHeight;
+let score = 0;
+const screenWidth = body.offsetWidth;
+const screenHeight = body.offsetHeight;
 let totalMunitions = 10;
 let munitionsRestantes = totalMunitions;
 
@@ -24,8 +25,6 @@ button.addEventListener('click', function () {
 
   window.addEventListener('click', function (e) {
     if (munitionsRestantes > 0) {
-      shot.play();
-
       if (e.target.classList.contains('duck')) {
         blood.style.display = 'block';
         blood.style.left = e.pageX + 'px';
@@ -35,32 +34,44 @@ button.addEventListener('click', function () {
         }, 500);
         score++;
         button.innerHTML = 'Score ' + score;
-        shot.play();
+        if (munitionsRestantes > 0) {
+          shot.play();
+        }
       }
 
       munitionsRestantes--;
       munitionCounter.textContent = 'Munitions: ' + munitionsRestantes;
     }
+
+    if (
+      e.target.classList.contains('bullet') &&
+      bullet.style.display === 'block'
+    ) {
+      munitionsRestantes += 5;
+      munitionCounter.textContent = 'Munitions: ' + munitionsRestantes;
+      bullet.style.display = 'none';
+      reload.play();
+    } else if (munitionsRestantes > 0) {
+      shot.play();
+    }
   });
 
   setInterval(function () {
-    // randTop = Math.random() * (screenHeight - 150);
-    randleft = Math.random() * (screenWidth - 150);
-    duck.style.left = randleft + 'px';
-    // duck.style.top = (randTop) + "px"
+    const randLeft = Math.random() * (screenWidth - 150);
+    duck.style.left = randLeft + 'px';
   }, 1000);
 });
 
 function displayBullet() {
-  bullet.style.display = 'block'; // Afficher la munition
+  bullet.style.display = 'block';
 
   setTimeout(function () {
-    bullet.style.display = 'none'; // Masquer la munition après 5 secondes
+    bullet.style.display = 'none';
 
     setTimeout(function () {
-      displayBullet(); // Réafficher la munition après 5 secondes
+      displayBullet();
     }, 5000);
   }, 5000);
 }
 
-displayBullet(); // Démarre le cycle d'affichage et de masquage de la munition
+displayBullet();
