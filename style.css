@@ -15,6 +15,7 @@ body {
     height: 100vh;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    position: relative;
 }
 
 
@@ -34,7 +35,7 @@ body {
     z-index: 10;
 }
 
-.cursor,
+/* .cursor,
 .blood {
     position: absolute;
     width: 150px;
@@ -45,13 +46,12 @@ body {
 
 }
 
+*/
 .mute-button-picture,
 .unmute-button-picture {
-    width: 60px;
-    height: 60px;
     position: absolute;
-    top: 50px;
-    right: 50px;
+    top: -6px;
+    right: -3px;
     z-index: 20;
     cursor: pointer;
     background: #ffffff;
@@ -62,11 +62,41 @@ body {
     display: none;
 }
 
+
+.cursor,
+.blood {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    z-index: 3;
+    transform: translate(-75%, -50%);
+    pointer-events: none;
+}
+
 .blood {
     z-index: 10;
 }
 
-.start-game {
+#mute-button {
+    z-index: 20;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+#start-game-button {
+    border-radius: 20px;
+    font-size: 35px;
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 150%);
+    z-index: 22;
+}
+
+
+
+/* button {
     border-radius: 20px;
     font-size: 35px;
     padding: 20px;
@@ -74,14 +104,34 @@ body {
     left: 50%;
     transform: translate(-50%, 150%);
     z-index: 1;
-}
+} */
 
-.duck {
-    width: 150px;
-    height: 150px;
+
+.zombie {
+    width: 50px;
+    height: 50px;
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 350%);
-    z-index: 2;
-    transition: all 1s;
+    /* top:38%; */
+    top: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+}
+
+.zombie-walk {
+    animation: zombie-walk 2s ease-in-out infinite;
+}
+
+@keyframes zombie-walk {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    50% {
+        transform: translateX(-20%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }

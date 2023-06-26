@@ -9,9 +9,11 @@
   </head>
   <body>
     <div class="container">
-      <button type="button" class="start-game">Start Game</button>
+      <button id="start-game-button" type="button" class="start-game">
+        Start Game
+      </button>
       <img src="target.png" alt="" class="cursor" />
-      <img src="clicker.png" alt="" class="duck" />
+      <img src="clicker.png" alt="" class="zombie" />
       <img src="blood.png" alt="" class="blood" />
     </div>
     <img src="images/level1.jpg" alt="" class="level1" />
@@ -27,11 +29,11 @@
 
     <audio class="shot" src="shot.mp3"></audio>
     <audio class="soundtrack" src="soundtrack.mp3"></audio>
-    <button type="button" class="mute-button">
+    <button id="mute-button" type="button">
       <img src="images/mute.png" alt="" class="mute-button-picture" />
       <img src="images/unmute.png" alt="" class="unmute-button-picture" />
     </button>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
   </body>
 </html>

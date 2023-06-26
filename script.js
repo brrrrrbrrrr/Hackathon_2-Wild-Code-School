@@ -1,27 +1,20 @@
 const cursor = document.querySelector('.cursor');
 const blood = document.querySelector('.blood');
-const duck = document.querySelector('.duck');
+const zombie = document.querySelector('.zombie');
 const body = document.querySelector('body');
 const shot = document.querySelector(".shot");
 const soundtrack = document.querySelector(".soundtrack");
-const startButton = document.querySelector(".start-game");
-const muteButton = document.querySelector('.mute-button');
+const startButton = document.getElementById("start-game-button");
+const muteButton = document.getElementById('mute-button');
 const muteButtonPicture = document.querySelector('.mute-button-picture');
 const unmuteButtonPicture = document.querySelector('.unmute-button-picture');
+console.log(startButton);
+import { initializeGame } from './game.js';
+
+initializeGame();
 
 
 
-
-const level1 = document.querySelector(".level1")
-const level2 = document.querySelector(".level2")
-const level3 = document.querySelector(".level3")
-const level4 = document.querySelector(".level4")
-const level5 = document.querySelector(".level5")
-const level6 = document.querySelector(".level6")
-const level7 = document.querySelector(".level7")
-const level8 = document.querySelector(".level8")
-const level9 = document.querySelector(".level9")
-const level10 = document.querySelector(".level10")
 const container = document.querySelector('.container');
 
 let score = 0;
@@ -59,6 +52,7 @@ muteButton.addEventListener('click', function () {
 
 startButton.addEventListener('click', function () {
     soundtrack.play();
+
     window.addEventListener('mousemove', function (e) {
         cursor.style.left = e.pageX + "px";
         cursor.style.top = e.pageY + "px";
@@ -67,7 +61,7 @@ startButton.addEventListener('click', function () {
     window.addEventListener('click', function (e) {
         shot.play();
 
-        if (e.target.classList.contains("duck")) {
+        if (e.target.classList.contains("zombie")) {
             blood.style.display = 'block';
             blood.style.left = e.pageX + "px";
             blood.style.top = e.pageY + "px";
@@ -85,7 +79,7 @@ startButton.addEventListener('click', function () {
                     startButton.innerHTML = "Level " + currentLevel + " Score " + score;
                     container.style.backgroundImage = `url(images/level${currentLevel}.png)`;
                     body.style.backgroundImage = `url(images/level${currentLevel}.png)`;
-                    this.alert("Great ! You've killed all the zombies in this area ! Get ready for the next level !")
+                    alert("Great ! You've killed all the zombies in this area ! Get ready for the next level !")
                 } else {
                     startButton.innerHTML = "Congratulations! You've completed all levels!";
                 }
@@ -97,6 +91,7 @@ startButton.addEventListener('click', function () {
 
     setInterval(function () {
         const randleft = Math.random() * (screenWidth - 150);
-        duck.style.left = randleft + "px";
+        zombie.style.left = randleft + "px";
     }, 1000);
 });
+
