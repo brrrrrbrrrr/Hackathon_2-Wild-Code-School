@@ -1,7 +1,7 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -20,26 +20,26 @@ body {
 
 .cursor,
 .blood {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    z-index: 3;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .blood {
-    z-index: 10;
+  z-index: 10;
 }
 
 button {
-    border-radius: 20px;
-    font-size: 35px;
-    padding: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 150%);
-    z-index: 1;
+  border-radius: 20px;
+  font-size: 35px;
+  padding: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 150%);
+  z-index: 1;
 }
 
 

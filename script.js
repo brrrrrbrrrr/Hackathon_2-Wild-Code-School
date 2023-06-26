@@ -1,6 +1,7 @@
 cursor = document.querySelector('.cursor');
 blood = document.querySelector('.blood');
 zombie = document.querySelector('.zombie');
+zombieWalk= document.querySelector('.zombieWalk');
 body = document.querySelector('body');
 button = document.querySelector('button');
 shot = document.querySelector('.shot');
@@ -29,7 +30,11 @@ button.addEventListener('click', function () {
       score++;
       button.innerHTML = 'Score ' + score;
       shot.play();
-    }
+        zombie.style.display = 'none';
+       
+       
+      }
+      
   });
 
   let zombieDistance = parseInt(zombie.style.top);
@@ -62,33 +67,48 @@ button.addEventListener('click', function () {
 
   zombie.classList.add('zombie-walk');
 
-
-    
     const zombieMaker = (distance = 55, width = 50, height = 50) => {
-      let img = document.createElement('img');
-      img.src = 'clicker.png';
-      document.body.appendChild(img);
-      img.classList.add('zombie');
-      img.classList.add('zombie-walk');
-      img.style.left = 20 + Math.random() * 50 + '%';
+        
+     
+    let img = document.createElement('img');
+    img.src = 'clicker.png';
+    document.body.appendChild(img);
+    img.classList.add('zombie');
+    img.classList.add('zombie-walk');
+    img.style.left = 20 + Math.random() * 50 + '%';
+    img.style.top = `${distance}%`;
+    img.style.width = `${width}px`;
+    img.style.height = `${height}px`;
+        img.style.zIndex = 1;
+        
+       
+           
+        img.addEventListener('click', function (e) {
+          blood.style.display = 'block';
+          blood.style.left = e.pageX + 'px';
+          blood.style.top = e.pageY + 'px';
+          setTimeout(function () {
+            blood.style.display = 'none';
+          }, 500);
+          score++;
+          button.innerHTML = 'Score ' + score;
+          shot.play();
+          img.style.display = 'none';
+        });
+
+    const updateZombieDistance = () => {
+      distance += 1;
+      width += 20;
+      height += 20;
       img.style.top = `${distance}%`;
       img.style.width = `${width}px`;
       img.style.height = `${height}px`;
-      img.style.zIndex = 1;
-
-      const updateZombieDistance = () => {
-        distance += 1;
-        width += 20;
-        height += 20;
-        img.style.top = `${distance}%`;
-        img.style.width = `${width}px`;
-        img.style.height = `${height}px`;
-      };
-
-      setInterval(updateZombieDistance, 1000);
     };
 
-    setInterval(() => {
-      zombieMaker();
-    }, 1000);
+    setInterval(updateZombieDistance, 1000);
+  };
+
+  setInterval(() => {
+    zombieMaker();
+  }, 1000);
 });
