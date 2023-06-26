@@ -45,14 +45,23 @@ body {
 
 }
 
-.mute-button-picture {
+
+
+.mute-button-picture,
+.unmute-button-picture {
     width: 60px;
     height: 60px;
     position: absolute;
     top: 50px;
     right: 50px;
-    z-index: 100;
+    z-index: 20;
     cursor: pointer;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.hide {
+    display: none;
 }
 
 .blood {

@@ -5,7 +5,10 @@ const body = document.querySelector('body');
 const shot = document.querySelector(".shot");
 const soundtrack = document.querySelector(".soundtrack");
 const startButton = document.querySelector(".start-game");
-const muteButton = document.querySelector(".mute-button");
+const muteButton = document.querySelector('.mute-button');
+const muteButtonPicture = document.querySelector('.mute-button-picture');
+const unmuteButtonPicture = document.querySelector('.unmute-button-picture');
+
 
 
 
@@ -27,6 +30,32 @@ let targetScore = 1;
 
 const screenWidth = body.offsetWidth;
 
+
+let isMuted = false;
+unmuteButtonPicture.classList.add('hide');
+muteButton.addEventListener('click', function () {
+
+    muteButton.addEventListener('pointerenter', function () {
+        cursor.classList.add('hide');
+
+    })
+    muteButton.addEventListener('pointerleave', function () {
+        cursor.classList.remove('hide');
+
+    })
+
+    isMuted = !isMuted;
+
+    if (isMuted) {
+        soundtrack.muted = true;
+        muteButtonPicture.classList.add('hide');
+        unmuteButtonPicture.classList.remove('hide');
+    } else {
+        soundtrack.muted = false;
+        muteButtonPicture.classList.remove('hide');
+        unmuteButtonPicture.classList.add('hide');
+    }
+});
 
 startButton.addEventListener('click', function () {
     soundtrack.play();
