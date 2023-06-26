@@ -30,11 +30,18 @@ function addMunitionIcons() {
   }
 }
 
+function resetZombies() {
+  const zombies = document.querySelectorAll('.zombie');
+  zombies.forEach((zombie) => {
+    zombie.remove();
+  });
+}
+
 export function handleClick(e) {
-  if (munitionsRestantes > 0) {
-    munitionsRestantes--;
-    munitionCounter.textContent = munitionsRestantes;
-    if (e.target.classList.contains('zombie')) {
+  if (e.target.classList.contains('zombie')) {
+    if (munitionsRestantes > 0) {
+      munitionsRestantes--;
+      munitionCounter.textContent = munitionsRestantes;
       blood.style.display = 'block';
       blood.style.left = e.pageX + 'px';
       blood.style.top = e.pageY + 'px';
@@ -51,6 +58,7 @@ export function handleClick(e) {
         if (currentLevel < 10) {
           currentLevel++;
           targetScore += 5;
+          resetZombies();
           score = 0;
           startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
           container.style.backgroundImage = `url(images/level${currentLevel}.png)`;
