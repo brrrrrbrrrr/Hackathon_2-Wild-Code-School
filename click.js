@@ -4,9 +4,14 @@ import { button } from './elements/button.js';
 import { zombie } from './elements/zombie.js';
 import { bullet } from './elements/bullet.js';
 import { reload } from './elements/reload.js';
+const startButton = document.getElementById('start-game-button');
+const container = document.querySelector('.container');
+const body = document.querySelector('body');
 
 let score = 0;
 let totalMunitions = 20;
+let targetScore = 10;
+let currentLevel = 1;
 let munitionsRestantes = totalMunitions;
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
@@ -29,7 +34,6 @@ export function handleClick(e) {
   if (munitionsRestantes > 0) {
     munitionsRestantes--;
     munitionCounter.textContent = munitionsRestantes;
-
     if (e.target.classList.contains('zombie')) {
       blood.style.display = 'block';
       blood.style.left = e.pageX + 'px';
@@ -37,11 +41,30 @@ export function handleClick(e) {
       setTimeout(function () {
         blood.style.display = 'none';
       }, 500);
-      score++;
-      button.innerHTML = 'Score ' + score;
-      e.target.style.display = 'none'; // Utiliser e.target.style.display
-      addMunitionIcons();
+      if (score < targetScore) {
+        console.log('pwet');
+        score++;
+        addMunitionIcons();
+        e.target.style.display = 'none';
+        startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
+      } else {
+        if (currentLevel < 10) {
+          currentLevel++;
+          targetScore += 5;
+          score = 0;
+          startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
+          container.style.backgroundImage = `url(images/level${currentLevel}.png)`;
+          body.style.backgroundImage = `url(images/level${currentLevel}.png)`;
+          alert(
+            "Great! You've killed all the zombies in this area! Get ready for the next level!"
+          );
+        } else {
+          startButton.innerHTML =
+            "Congratulations! You've completed all levels!";
+        }
+      }
     }
+    startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
 
     if (munitionsRestantes > 0) {
       shot.play();
