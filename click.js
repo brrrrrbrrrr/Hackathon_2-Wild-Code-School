@@ -5,9 +5,15 @@ import { zombie } from './elements/zombie.js';
 import { bullet } from './elements/bullet.js';
 import { reload } from './elements/reload.js';
 
+export function getZombieCount() {
+  return zombieCount;
+}
+
 let score = 0;
 let totalMunitions = 20;
 let munitionsRestantes = totalMunitions;
+export let zombieLimit = 5;
+let zombieCount = 0;
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
 function addMunitionIcons() {
@@ -39,6 +45,8 @@ export function handleClick(e) {
       }, 500);
       score++;
       button.innerHTML = 'Score ' + score;
+      zombieCount--;
+
       e.target.style.display = 'none'; // Utiliser e.target.style.display
       addMunitionIcons();
     }
@@ -77,8 +85,12 @@ export function handleClick(e) {
   setInterval(updateZombieDistance, 1000);
 }
 
+export function incrementZombieCount() {
+  zombieCount++;
+  console.log(zombieCount);
+}
+
 export function zombieMaker(distance = 55, width = 50, height = 50) {
-  console.log('toto');
   let img = document.createElement('img');
   img.src = 'clicker.png';
   document.body.appendChild(img);
@@ -99,6 +111,7 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       }, 500);
       score++;
       button.innerHTML = 'Score ' + score;
+      zombieCount--;
       shot.play();
       img.style.display = 'none';
     });
@@ -114,6 +127,8 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
   };
 
   setInterval(updateZombieDistance, 1000);
+
+  incrementZombieCount();
 }
 
 // Fonction pour afficher la grosse munition et gérer les interactions
