@@ -68,10 +68,11 @@ body {
   font-size: 50px;
   padding: 5px;
   border-radius: 5px;
-  top: 65%;
+  top: 70%;
   right: 50px;
   padding: 10px;
-  color: rgba(255, 255, 255, 0.509);
+  color: white;
+  font-weight: bold;
   background-color: rgba(255, 255, 255, 0.149);
 }
 
@@ -143,6 +144,9 @@ body {
   left: 100px;
   display: none;
   z-index: 999;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.247);
 }
 .munition-container {
   position: absolute;
