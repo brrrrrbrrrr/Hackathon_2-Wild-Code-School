@@ -50,7 +50,7 @@ export function handleClick(e) {
     munitionsRestantes--;
     munitionCounter.textContent = munitionsRestantes;
     addMunitionIcons();
-    shot.play();
+    // shot.play();
   }
   if (e.target.classList.contains('zombie')) {
     if (munitionsRestantes > 0) {
@@ -92,7 +92,7 @@ export function handleClick(e) {
     startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
 
     if (munitionsRestantes > 0) {
-      shot.play();
+      // shot.play();
       addMunitionIcons();
     }
   }
@@ -134,7 +134,7 @@ export function handleClick(e) {
 
 export function incrementZombieCount() {
   zombieCount++;
-  console.log(zombieCount);
+  // console.log(zombieCount);
 }
 
 export function zombieMaker(distance = 55, width = 50, height = 50) {
@@ -159,7 +159,7 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
 
       button.innerHTML = 'Score ' + score;
       zombieCount--;
-      shot.play();
+      // shot.play();
       img.style.display = 'none';
 
       console.log('score-deuxieme', score);
@@ -173,10 +173,10 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
     img.style.top = `${distance}%`;
     img.style.width = `${width}px`;
     img.style.height = `${height}px`;
-    console.log('distance', distance);
+    // console.log('distance', distance);
 
     if (distance > 65) {
-      console.log('distance', distance);
+      //   console.log('distance', distance);
 
       videoContainer.style.display = 'block';
       video.autoplay = true;

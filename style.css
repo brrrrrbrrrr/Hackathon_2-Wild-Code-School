@@ -51,6 +51,7 @@ body {
 }
 
 .cursor,
+.cursor-saber,
 .blood {
   position: absolute;
   width: 150px;
@@ -59,10 +60,14 @@ body {
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
-.cursor {
+.cursor,
+.cursor-saber {
   z-index: 999;
 }
-
+.cursor-saber {
+  width: 90px;
+  height: 200px;
+}
 #munition-counter {
   position: absolute;
   font-size: 50px;
@@ -96,16 +101,6 @@ body {
   transform: translate(-50%, 150%);
   z-index: 22;
 }
-
-/* button {
-    border-radius: 20px;
-    font-size: 35px;
-    padding: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 150%);
-    z-index: 1;
-} */
 
 .zombie {
   width: 50px;
@@ -164,6 +159,45 @@ body {
   background-size: cover;
 }
 
+.weapon-selection {
+  position: absolute;
+  top: 100px;
+  left: 400px;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+}
+
+.saber-button,
+.gun-button {
+  width: 130px;
+  height: 130px;
+  border: none;
+  background: transparent;
+  margin: 10px 20px;
+  transition: all 350ms ease;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saber-button:hover,
+.gun-button:hover {
+  background: url('images/scratched.png');
+  /* background-color: yellow; */
+}
+
+.saber-picture,
+.gun-picture {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.gun-picture {
+  transform: rotate(-20deg);
+}
 #video-container {
   top: 0%;
   left: 0%;
