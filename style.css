@@ -34,18 +34,6 @@ body {
     z-index: 10;
 }
 
-/* .cursor,
-.blood {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    z-index: 3;
-    transform: translate(-150%, -50%);
-    pointer-events: none;
-
-}
-
-*/
 .mute-button-picture,
 .unmute-button-picture {
     position: absolute;
@@ -72,7 +60,7 @@ body {
 }
 
 .cursor {
-    z-index: 9999999999999999999999999999999999999999999;
+    z-index: 999;
 }
 
 #munition-counter {
@@ -80,7 +68,7 @@ body {
     font-size: 50px;
     padding: 5px;
     border-radius: 5px;
-    top: 900px;
+    top: 65%;
     right: 50px;
     padding: 10px;
     color: rgba(255, 255, 255, 0.509);
@@ -150,14 +138,14 @@ body {
 .bullet {
     width: 150px;
     position: absolute;
-    top: 900px;
+    top: 65%;
     left: 100px;
     display: none;
 }
 
 .munition-container {
     position: absolute;
-    top: 1000px;
+    top: 80%;
     right: 50px;
     background-color: rgba(255, 255, 255, 0.149);
     padding: 0 10px;
