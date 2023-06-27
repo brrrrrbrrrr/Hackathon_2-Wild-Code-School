@@ -8,6 +8,7 @@ let gameOver = false;
 
 let gameInterval;
 
+
 export function initializeGame() {
   button.addEventListener('click', function () {
     window.addEventListener('mousemove', handleMouseMove);
