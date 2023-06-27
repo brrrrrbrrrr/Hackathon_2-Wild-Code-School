@@ -34,18 +34,6 @@ body {
     z-index: 10;
 }
 
-/* .cursor,
-.blood {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    z-index: 3;
-    transform: translate(-150%, -50%);
-    pointer-events: none;
-
-}
-
-*/
 .mute-button-picture,
 .unmute-button-picture {
     position: absolute;
@@ -72,7 +60,7 @@ body {
 }
 
 .cursor {
-    z-index: 9999999999999999999999999999999999999999999;
+    z-index: 999;
 }
 
 #munition-counter {
@@ -91,6 +79,7 @@ body {
     z-index: 10;
     width: 500px;
     height: 500px;
+    display: none;
 }
 
 #bloodBurst {

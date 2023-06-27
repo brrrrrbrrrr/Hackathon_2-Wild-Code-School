@@ -15,10 +15,21 @@ function playRandomCry(sounds) {
   soundToPlay.volume = volumeLevel;
   soundToPlay.play();
 }
+const startButton = document.getElementById('start-game-button');
+const container = document.querySelector('.container');
+const body = document.querySelector('body');
+
+export function getZombieCount() {
+  return zombieCount;
+}
 
 let score = 0;
 let totalMunitions = 20;
+let targetScore = 10;
+let currentLevel = 1;
 let munitionsRestantes = totalMunitions;
+export let zombieLimit = 5;
+let zombieCount = 0;
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
 
@@ -37,12 +48,18 @@ function addMunitionIcons() {
   }
 }
 
-export function handleClick(e) {
-  if (munitionsRestantes > 0) {
-    munitionsRestantes--;
-    munitionCounter.textContent = munitionsRestantes;
+function resetZombies() {
+  const zombies = document.querySelectorAll('.zombie');
+  zombies.forEach((zombie) => {
+    zombie.remove();
+  });
+}
 
-    if (e.target.classList.contains('zombie')) {
+export function handleClick(e) {
+  if (e.target.classList.contains('zombie')) {
+    if (munitionsRestantes > 0) {
+      munitionsRestantes--;
+      munitionCounter.textContent = munitionsRestantes;
       const sounds = Object.values(crySounds);
       playRandomCry(sounds);
       blood.play();
@@ -52,11 +69,33 @@ export function handleClick(e) {
       setTimeout(function () {
         blood.style.display = 'none';
       }, 500);
-      score++;
-      button.innerHTML = 'Score ' + score;
-      e.target.style.display = 'none'; // Utiliser e.target.style.display
-      addMunitionIcons();
+      if (score < targetScore) {
+        console.log('pwet');
+
+        addMunitionIcons();
+        e.target.style.display = 'none';
+        startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
+        zombieCount--;
+        score++;
+      } else {
+        if (currentLevel < 10) {
+          currentLevel++;
+          targetScore += 5;
+          resetZombies();
+          score = 0;
+          startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
+          container.style.backgroundImage = `url(images/level${currentLevel}.png)`;
+          body.style.backgroundImage = `url(images/level${currentLevel}.png)`;
+          alert(
+            "Great! You've killed all the zombies in this area! Get ready for the next level!"
+          );
+        } else {
+          startButton.innerHTML =
+            "Congratulations! You've completed all levels!";
+        }
+      }
     }
+    startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
 
     if (munitionsRestantes > 0) {
       shot.play();
@@ -92,8 +131,12 @@ export function handleClick(e) {
   setInterval(updateZombieDistance, 1000);
 }
 
+export function incrementZombieCount() {
+  zombieCount++;
+  console.log(zombieCount);
+}
+
 export function zombieMaker(distance = 55, width = 50, height = 50) {
-  console.log('toto');
   let img = document.createElement('img');
   img.src = 'clicker.png';
   document.body.appendChild(img);
@@ -114,6 +157,7 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       }, 500);
       score++;
       button.innerHTML = 'Score ' + score;
+      zombieCount--;
       shot.play();
 
 
@@ -131,6 +175,8 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
   };
 
   setInterval(updateZombieDistance, 1000);
+
+  incrementZombieCount();
 }
 
 // Fonction pour afficher la grosse munition et gérer les interactions
