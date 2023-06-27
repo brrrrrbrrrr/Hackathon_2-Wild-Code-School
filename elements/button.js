@@ -1,1 +1,1 @@
-export const button = document.querySelector('button');
+export const button = document.querySelector('.start-game');

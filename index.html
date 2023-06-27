@@ -10,10 +10,17 @@
   <body>
     <img src="target.png" alt="" class="cursor" />
     <div class="container">
+      <div class="weapon-selection">
+        <button id="saber" class="saber-button">
+          <img src="images/saber.png" alt="" class="saber-picture" />
+        </button>
+        <button id="gun" class="gun-button">
+          <img src="images/gun.png" alt="" class="gun-picture" />
+        </button>
+      </div>
       <button id="start-game-button" type="button" class="start-game">
         Start Game
       </button>
-
       <img src="clicker.png" alt="" class="zombie" />
       <video
         id="bloodBurst"
@@ -27,6 +34,9 @@
         <div class="small-bullet"></div>
       </div>
     </div>
+
+    <img src="images/saber_fps.png" alt="" class="cursor-saber" />
+    <img src="target.png" alt="" class="cursor" />
     <audio class="reload" src="reload.wav"></audio>
     <img src="images/level1.jpg" alt="" class="level1" />
     <img src="images/level2.png" alt="" class="level2" />
@@ -54,6 +64,7 @@
       </video>
     </div>
 
+    <audio class="saber-sound" src="saberSound.mp3"></audio>
     <audio class="shot" src="shot.mp3"></audio>
     <audio class="soundtrack" src="soundtrack.mp3"></audio>
     <button id="mute-button" type="button">
