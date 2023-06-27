@@ -8,8 +8,6 @@ let gameOver = false;
 
 let gameInterval;
 
-console.log(zombieLimit);
-console.log('zombie count: ', getZombieCount());
 export function initializeGame() {
   button.addEventListener('click', function () {
     window.addEventListener('mousemove', handleMouseMove);
@@ -19,7 +17,6 @@ export function initializeGame() {
         zombieMaker();
       } else if (getZombieCount() > zombieLimit) {
         handleGameOver();
-        console.log('titi');
       }
     }, 1000);
     window.addEventListener('click', (e) => {

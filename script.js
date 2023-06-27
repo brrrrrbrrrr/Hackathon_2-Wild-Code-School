@@ -1,8 +1,6 @@
 const cursor = document.querySelector('.cursor');
-const blood = document.querySelector('.blood');
-const zombie = document.querySelector('.zombie');
+
 const body = document.querySelector('body');
-const shot = document.querySelector('.shot');
 const soundtrack = document.querySelector('.soundtrack');
 const startButton = document.getElementById('start-game-button');
 const muteButton = document.getElementById('mute-button');
@@ -12,12 +10,6 @@ const unmuteButtonPicture = document.querySelector('.unmute-button-picture');
 import { initializeGame } from './game.js';
 
 initializeGame();
-
-const container = document.querySelector('.container');
-
-let score = 0;
-let currentLevel = 1;
-let targetScore = 1;
 
 const screenWidth = body.offsetWidth;
 
@@ -52,42 +44,10 @@ startButton.addEventListener('click', function () {
     cursor.style.top = e.pageY + 'px';
   });
 
-  window.addEventListener('click', function (e) {
-    shot.play();
+  // startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
 
-    if (e.target.classList.contains('zombie')) {
-      blood.style.display = 'block';
-      blood.style.left = e.pageX + 'px';
-      blood.style.top = e.pageY + 'px';
-      setTimeout(function () {
-        blood.style.display = 'none';
-      }, 500);
-      if (score < targetScore) {
-        score++;
-        startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
-      } else {
-        if (currentLevel < 10) {
-          currentLevel++;
-          targetScore++;
-          score = 0;
-          startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
-          container.style.backgroundImage = `url(images/level${currentLevel}.png)`;
-          body.style.backgroundImage = `url(images/level${currentLevel}.png)`;
-          alert(
-            "Great ! You've killed all the zombies in this area ! Get ready for the next level !"
-          );
-        } else {
-          startButton.innerHTML =
-            "Congratulations! You've completed all levels!";
-        }
-      }
-    }
-  });
-
-  startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
-
-  setInterval(function () {
-    const randleft = Math.random() * (screenWidth - 150);
-    zombie.style.left = randleft + 'px';
-  }, 1000);
+  // setInterval(function () {
+  //   const randleft = Math.random() * (screenWidth - 150);
+  //   zombie.style.left = randleft + 'px';
+  // }, 1000);
 });
