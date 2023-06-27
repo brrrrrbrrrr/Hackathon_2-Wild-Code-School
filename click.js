@@ -63,8 +63,6 @@ export function handleClick(e) {
         blood.style.display = 'none';
       }, 500);
       if (score < targetScore) {
-        console.log('pwet');
-
         addMunitionIcons();
         e.target.style.display = 'none';
         startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
@@ -174,6 +172,7 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
     img.style.width = `${width}px`;
     img.style.height = `${height}px`;
     console.log('distance', distance);
+    console.log('zombieCount : ', zombieCount);
 
     if (distance > 65) {
       console.log('distance', distance);

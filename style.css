@@ -122,6 +122,23 @@ body {
 .zombie-walk {
   animation: zombie-walk 2s ease-in-out infinite;
 }
+.h1-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.h1 {
+  position: relative;
+  text-transform: uppercase;
+  width: 300px;
+  margin: 25px 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  right: 25px;
+  color: red;
+}
 
 @keyframes zombie-walk {
   0% {
