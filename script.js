@@ -46,54 +46,62 @@ muteButton.addEventListener('click', function () {
 });
 
 startButton.addEventListener('click', function () {
+  const volumeLevel = 0.4;
+  soundtrack.volume = volumeLevel;
   soundtrack.play();
 
   let isGunButtonClicked = true;
   let isSaberButtonClicked = false;
 
-  gunButton.addEventListener('click', function () {
+  gunButton.addEventListener('click', function (e) {
+    cursor.style.opacity = '1';
+    munitionContainer.style.opacity = '1';
+    cursorSaber.style.opacity = "0";
     window.addEventListener('mousemove', handleMouseMove);
-    if (cursorSaber) {
+    if (e.target.classList.contains('cursor-saber')) {
       cursorSaber.style.opacity = '0';
     }
-    if (cursor) {
+    if (e.target.classList.contains('cursor')) {
       cursor.style.opacity = '1';
     }
-    if (bullet) {
-      bullet.style.opacity = '1';
-    }
-    if (smallBullet) {
+
+    if (e.target.classList.contains('small-bullet')) {
       smallBullet.style.opacity = '1';
     }
-    if (munitionContainer) {
+    console.log(munitionContainer)
+    if (e.target.classList.contains('munition-container')) {
       munitionContainer.style.opacity = '1';
     }
-    if (munitionCounter) {
+    if (e.target.classList.contains('munition-counter')) {
       munitionCounter.style.opacity = '1';
     }
     isSaberButtonClicked = false;
     isGunButtonClicked = true;
   });
 
-  saberButton.addEventListener('click', function () {
+  saberButton.addEventListener('click', function (e) {
+
+    cursorSaber.style.opacity = '1';
+    munitionContainer.style.opacity = '0';
+    cursor.style.opacity = "0";
     window.addEventListener('mousemove', function (e) {
       cursorSaber.style.left = e.pageX + 'px';
       cursorSaber.style.top = e.pageY + 'px';
     });
-    if (cursorSaber) {
+    if (e.target.classList.contains('cursor-saber')) {
       cursorSaber.style.opacity = '1';
     }
-    if (cursor) {
+    if (e.target.classList.contains('cursor')) {
       cursor.style.opacity = '0';
     }
 
-    if (smallBullet) {
+    if (e.target.classList.contains('small-bullet')) {
       smallBullet.style.opacity = '0';
     }
-    if (munitionContainer) {
+    if (e.target.classList.contains('munition-container')) {
       munitionContainer.style.opacity = '0';
     }
-    if (munitionCounter) {
+    if (e.target.classList.contains('munition-counter')) {
       munitionCounter.style.opacity = '0';
     }
     isGunButtonClicked = false;
@@ -105,6 +113,7 @@ startButton.addEventListener('click', function () {
       isSaberButtonClicked = false;
       isGunButtonClicked = true;
       shot.play();
+      console.log("shot script");
     }
   });
   window.addEventListener('click', function () {

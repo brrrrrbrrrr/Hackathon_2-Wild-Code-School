@@ -4,8 +4,19 @@ import { button } from './elements/button.js';
 import { zombie } from './elements/zombie.js';
 import { bullet } from './elements/bullet.js';
 import { reload } from './elements/reload.js';
+import { shellCasing } from './elements/shellCasing.js';
 import { video } from './elements/video.js';
 import { videoContainer } from './elements/videoContainer.js';
+import crySounds from './elements/cry.js'
+
+
+function playRandomCry(sounds) {
+  const randomIndex = Math.floor(Math.random() * sounds.length);
+  const soundToPlay = sounds[randomIndex];
+  const volumeLevel = 0.2;
+  soundToPlay.volume = volumeLevel;
+  soundToPlay.play();
+}
 const startButton = document.getElementById('start-game-button');
 const container = document.querySelector('.container');
 const body = document.querySelector('body');
@@ -23,6 +34,7 @@ export let zombieLimit = 5;
 let zombieCount = 0;
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
+
 function addMunitionIcons() {
   const munitionContainer = document.querySelector('.munition-container');
 
@@ -56,6 +68,9 @@ export function handleClick(e) {
     if (munitionsRestantes > 0) {
       munitionsRestantes--;
       munitionCounter.textContent = munitionsRestantes;
+      const sounds = Object.values(crySounds);
+      playRandomCry(sounds);
+      blood.play();
       blood.style.display = 'block';
       blood.style.left = e.pageX + 'px';
       blood.style.top = e.pageY + 'px';
@@ -124,7 +139,6 @@ export function handleClick(e) {
     if (zombieDistance > 65) {
       videoContainer.style.display = 'block';
       video.autoplay = true;
-
       zombie.style.display = 'none';
     }
   };
@@ -203,13 +217,24 @@ function displayBullet() {
   }, 3000);
 }
 
+
+bullet.addEventListener('click', function () {
+  shot.volume = 0;
+  setTimeout(function () {
+    shot.volume = 1;
+  }, 700);
+})
 // Gestion du tir sur la grosse munition
 bullet.addEventListener('click', function () {
+
   munitionsRestantes += 10;
   munitionCounter.textContent = munitionsRestantes;
   bullet.style.display = 'none';
   reload.play();
   addMunitionIcons();
+  setTimeout(function () {
+    shellCasing.play();
+  }, 700);
 });
 
 displayBullet();
