@@ -4,10 +4,14 @@ import { button } from './elements/button.js';
 import { zombie } from './elements/zombie.js';
 import { bullet } from './elements/bullet.js';
 import { reload } from './elements/reload.js';
+import { video } from './elements/video.js';
+import { videoContainer } from './elements/videoContainer.js';
 
 let score = 0;
 let totalMunitions = 20;
 let munitionsRestantes = totalMunitions;
+const container = document.querySelector('.container');
+
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
 function addMunitionIcons() {
@@ -72,6 +76,13 @@ export function handleClick(e) {
     zombie.style.top = `${zombieDistance}%`;
     zombie.style.width = `${zombieWidth}px`;
     zombie.style.height = `${zombieHeight}px`;
+
+      if (zombieDistance > 65) {
+        videoContainer.style.display = 'block';
+        video.autoplay = true;
+        container.style.background = 'rgba(255,0,0,0.5)';
+        zombie.style.display = 'none';
+      }
   };
   zombie.classList.add('zombie-walk');
   setInterval(updateZombieDistance, 1000);
@@ -111,6 +122,15 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
     img.style.top = `${distance}%`;
     img.style.width = `${width}px`;
     img.style.height = `${height}px`;
+    console.log('distance', distance);
+
+    if (distance > 65) {
+     
+      videoContainer.style.display = 'block';
+      video.autoplay = true;
+      container.style.background = 'rgba(255,0,0,0.5)';
+      img.style.display = 'none';
+    }
   };
 
   setInterval(updateZombieDistance, 1000);

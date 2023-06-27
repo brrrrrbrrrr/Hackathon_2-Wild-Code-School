@@ -32,6 +32,8 @@ body {
   height: 100vh;
   overflow: hidden;
   z-index: 10;
+  perspective: 1000px;
+
 }
 
 /* .cursor,
@@ -126,7 +128,12 @@ body {
   top: 55%;
   transform: translate(-50%, -50%);
   z-index: 20;
+  transform-style: preserve-3d;
+ 
+
 }
+
+
 
 .zombie-walk {
   animation: zombie-walk 2s ease-in-out infinite;
@@ -167,4 +174,19 @@ body {
   display: inline-block;
   background-image: url('bullet.png');
   background-size: cover;
+}
+
+#video-container {
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  display: none;
+}
+video {
+  position: absolute;
+  z-index: 20;
+  width: 100%;
 }

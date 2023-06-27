@@ -89,9 +89,9 @@ startButton.addEventListener('click', function () {
 
     startButton.innerHTML = "Level " + currentLevel + " Score " + score;
 
-    setInterval(function () {
-        const randleft = Math.random() * (screenWidth - 150);
-        zombie.style.left = randleft + "px";
-    }, 1000);
+    // setInterval(function () {
+    //     const randleft = Math.random() * (screenWidth - 150);
+    //     zombie.style.left = randleft + "px";
+    // }, 1000);
 });
 
