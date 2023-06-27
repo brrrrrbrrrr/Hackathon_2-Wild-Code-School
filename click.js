@@ -4,10 +4,23 @@ import { button } from './elements/button.js';
 import { zombie } from './elements/zombie.js';
 import { bullet } from './elements/bullet.js';
 import { reload } from './elements/reload.js';
+import { video } from './elements/video.js';
+import { videoContainer } from './elements/videoContainer.js';
+const startButton = document.getElementById('start-game-button');
+const container = document.querySelector('.container');
+const body = document.querySelector('body');
+
+export function getZombieCount() {
+  return zombieCount;
+}
 
 let score = 0;
 let totalMunitions = 20;
+let targetScore = 10;
+let currentLevel = 1;
 let munitionsRestantes = totalMunitions;
+export let zombieLimit = 5;
+let zombieCount = 0;
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
 function addMunitionIcons() {
@@ -25,23 +38,58 @@ function addMunitionIcons() {
   }
 }
 
+function resetZombies() {
+  const zombies = document.querySelectorAll('.zombie');
+  zombies.forEach((zombie) => {
+    zombie.remove();
+  });
+}
+
 export function handleClick(e) {
-  if (munitionsRestantes > 0) {
+  if (munitionsRestantes > 0 && !e.target.classList.contains('zombie')) {
     munitionsRestantes--;
     munitionCounter.textContent = munitionsRestantes;
-
-    if (e.target.classList.contains('zombie')) {
+    addMunitionIcons();
+    // shot.play();
+  }
+  if (e.target.classList.contains('zombie')) {
+    if (munitionsRestantes > 0) {
+      munitionsRestantes--;
+      munitionCounter.textContent = munitionsRestantes;
       blood.style.display = 'block';
       blood.style.left = e.pageX + 'px';
       blood.style.top = e.pageY + 'px';
       setTimeout(function () {
         blood.style.display = 'none';
       }, 500);
-      score++;
-      button.innerHTML = 'Score ' + score;
-      e.target.style.display = 'none'; // Utiliser e.target.style.display
-      addMunitionIcons();
+      if (score < targetScore) {
+        console.log('pwet');
+
+        addMunitionIcons();
+        e.target.style.display = 'none';
+        startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
+        zombieCount--;
+        score++;
+        console.log('score-init', score);
+      } else {
+        if (currentLevel < 10) {
+          currentLevel++;
+          targetScore += 5;
+          resetZombies();
+          score = 0;
+          startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
+          container.style.backgroundImage = `url(images/level${currentLevel}.png)`;
+          body.style.backgroundImage = `url(images/level${currentLevel}.png)`;
+          alert(
+            "Great! You've killed all the zombies in this area! Get ready for the next level!"
+          );
+        } else {
+          startButton.innerHTML =
+            "Congratulations! You've completed all levels!";
+        }
+      }
     }
+    startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
 
     if (munitionsRestantes > 0) {
       // shot.play();
@@ -72,9 +120,21 @@ export function handleClick(e) {
     zombie.style.top = `${zombieDistance}%`;
     zombie.style.width = `${zombieWidth}px`;
     zombie.style.height = `${zombieHeight}px`;
+
+    if (zombieDistance > 65) {
+      videoContainer.style.display = 'block';
+      video.autoplay = true;
+
+      zombie.style.display = 'none';
+    }
   };
   zombie.classList.add('zombie-walk');
   setInterval(updateZombieDistance, 1000);
+}
+
+export function incrementZombieCount() {
+  zombieCount++;
+  // console.log(zombieCount);
 }
 
 export function zombieMaker(distance = 55, width = 50, height = 50) {
@@ -96,10 +156,13 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       setTimeout(function () {
         blood.style.display = 'none';
       }, 500);
-      score++;
+
       button.innerHTML = 'Score ' + score;
+      zombieCount--;
       // shot.play();
       img.style.display = 'none';
+
+      console.log('score-deuxieme', score);
     });
   }
 
@@ -110,9 +173,21 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
     img.style.top = `${distance}%`;
     img.style.width = `${width}px`;
     img.style.height = `${height}px`;
+    // console.log('distance', distance);
+
+    if (distance > 65) {
+      //   console.log('distance', distance);
+
+      videoContainer.style.display = 'block';
+      video.autoplay = true;
+
+      img.style.display = 'none';
+    }
   };
 
   setInterval(updateZombieDistance, 1000);
+
+  incrementZombieCount();
 }
 
 // Fonction pour afficher la grosse munition et gérer les interactions
@@ -124,8 +199,8 @@ function displayBullet() {
 
     setTimeout(function () {
       displayBullet();
-    }, 5000);
-  }, 5000);
+    }, 3000);
+  }, 3000);
 }
 
 // Gestion du tir sur la grosse munition

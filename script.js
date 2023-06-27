@@ -1,6 +1,5 @@
 const cursor = document.querySelector('.cursor');
-const blood = document.querySelector('.blood');
-const zombie = document.querySelector('.zombie');
+
 const body = document.querySelector('body');
 const shot = document.querySelector('.shot');
 const soundtrack = document.querySelector('.soundtrack');
@@ -21,12 +20,6 @@ const gunButton = document.querySelector('.gun-button');
 import { initializeGame } from './game.js';
 
 initializeGame();
-
-const container = document.querySelector('.container');
-
-let score = 0;
-let currentLevel = 1;
-let targetScore = 1;
 
 const screenWidth = body.offsetWidth;
 
@@ -79,7 +72,6 @@ startButton.addEventListener('click', function () {
     if (munitionCounter) {
       munitionCounter.style.opacity = '1';
     }
-
     isSaberButtonClicked = false;
     isGunButtonClicked = true;
   });
@@ -107,7 +99,6 @@ startButton.addEventListener('click', function () {
     if (munitionCounter) {
       munitionCounter.style.opacity = '0';
     }
-
     isGunButtonClicked = false;
     isSaberButtonClicked = true;
   });
@@ -119,11 +110,11 @@ startButton.addEventListener('click', function () {
       shot.play();
     }
   });
-
   window.addEventListener('click', function () {
     if (isSaberButtonClicked) {
       isGunButtonClicked = false;
       isSaberButtonClicked = true;
+      saberSound.currentTime = 0;
       saberSound.play();
     }
   });
