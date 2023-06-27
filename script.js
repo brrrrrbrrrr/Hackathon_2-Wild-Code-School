@@ -2,7 +2,6 @@ const cursor = document.querySelector('.cursor');
 const blood = document.querySelector('.blood');
 const zombie = document.querySelector('.zombie');
 const body = document.querySelector('body');
-const shot = document.querySelector(".shot");
 const soundtrack = document.querySelector(".soundtrack");
 const startButton = document.getElementById("start-game-button");
 const muteButton = document.getElementById('mute-button');
@@ -51,6 +50,8 @@ muteButton.addEventListener('click', function () {
 });
 
 startButton.addEventListener('click', function () {
+    const volumeLevel = 0.2;
+    soundtrack.volume = volumeLevel;
     soundtrack.play();
 
     window.addEventListener('mousemove', function (e) {

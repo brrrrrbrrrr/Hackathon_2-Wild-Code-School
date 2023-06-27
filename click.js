@@ -4,7 +4,17 @@ import { button } from './elements/button.js';
 import { zombie } from './elements/zombie.js';
 import { bullet } from './elements/bullet.js';
 import { reload } from './elements/reload.js';
+import { shellCasing } from './elements/shellCasing.js';
+import crySounds from './elements/cry.js'
 
+
+function playRandomCry(sounds) {
+  const randomIndex = Math.floor(Math.random() * sounds.length);
+  const soundToPlay = sounds[randomIndex];
+  const volumeLevel = 0.2;
+  soundToPlay.volume = volumeLevel;
+  soundToPlay.play();
+}
 
 let score = 0;
 let totalMunitions = 20;
@@ -33,6 +43,8 @@ export function handleClick(e) {
     munitionCounter.textContent = munitionsRestantes;
 
     if (e.target.classList.contains('zombie')) {
+      const sounds = Object.values(crySounds);
+      playRandomCry(sounds);
       blood.play();
       blood.style.display = 'block';
       blood.style.left = e.pageX + 'px';
@@ -134,13 +146,24 @@ function displayBullet() {
   }, 5000);
 }
 
+
+bullet.addEventListener('click', function () {
+  shot.volume = 0;
+  setTimeout(function () {
+    shot.volume = 1;
+  }, 700);
+})
 // Gestion du tir sur la grosse munition
 bullet.addEventListener('click', function () {
+
   munitionsRestantes += 10;
   munitionCounter.textContent = munitionsRestantes;
   bullet.style.display = 'none';
   reload.play();
   addMunitionIcons();
+  setTimeout(function () {
+    shellCasing.play();
+  }, 700);
 });
 
 displayBullet();
