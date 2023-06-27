@@ -62,6 +62,7 @@ export function handleClick(e) {
         startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
         zombieCount--;
         score++;
+        console.log('score-init', score);
       } else {
         if (currentLevel < 10) {
           currentLevel++;
@@ -140,11 +141,13 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       setTimeout(function () {
         blood.style.display = 'none';
       }, 500);
-      score++;
+
       button.innerHTML = 'Score ' + score;
       zombieCount--;
       shot.play();
       img.style.display = 'none';
+
+      console.log('score-deuxieme', score);
     });
   }
 

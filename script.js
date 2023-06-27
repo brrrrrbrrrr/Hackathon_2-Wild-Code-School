@@ -43,11 +43,4 @@ startButton.addEventListener('click', function () {
     cursor.style.left = e.pageX + 'px';
     cursor.style.top = e.pageY + 'px';
   });
-
-  // startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
-
-  // setInterval(function () {
-  //   const randleft = Math.random() * (screenWidth - 150);
-  //   zombie.style.left = randleft + 'px';
-  // }, 1000);
 });
