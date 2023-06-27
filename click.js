@@ -44,7 +44,7 @@ export function handleClick(e) {
     }
 
     if (munitionsRestantes > 0) {
-      shot.play();
+      // shot.play();
       addMunitionIcons();
     }
   }
@@ -78,7 +78,6 @@ export function handleClick(e) {
 }
 
 export function zombieMaker(distance = 55, width = 50, height = 50) {
-  console.log('toto');
   let img = document.createElement('img');
   img.src = 'clicker.png';
   document.body.appendChild(img);
@@ -99,7 +98,7 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       }, 500);
       score++;
       button.innerHTML = 'Score ' + score;
-      shot.play();
+      // shot.play();
       img.style.display = 'none';
     });
   }

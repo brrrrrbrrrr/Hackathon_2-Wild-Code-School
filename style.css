@@ -50,6 +50,7 @@ body {
 }
 
 .cursor,
+.cursor-saber,
 .blood {
   position: absolute;
   width: 150px;
@@ -58,16 +59,20 @@ body {
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
-.cursor {
+.cursor,
+.cursor-saber {
   z-index: 9999999999999999999999999999999999999999999;
 }
-
+.cursor-saber {
+  width: 90px;
+  height: 200px;
+}
 #munition-counter {
   position: absolute;
   font-size: 50px;
   padding: 5px;
   border-radius: 5px;
-  top: 900px;
+  top: 700px;
   right: 50px;
   padding: 10px;
   color: rgba(255, 255, 255, 0.509);
@@ -127,13 +132,13 @@ body {
 .bullet {
   width: 150px;
   position: absolute;
-  top: 900px;
+  top: 800px;
   left: 100px;
   display: none;
 }
 .munition-container {
   position: absolute;
-  top: 1000px;
+  top: 800px;
   right: 50px;
   background-color: rgba(255, 255, 255, 0.149);
   padding: 0 10px;
