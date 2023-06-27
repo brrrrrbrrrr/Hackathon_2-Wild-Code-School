@@ -46,6 +46,12 @@ function resetZombies() {
 }
 
 export function handleClick(e) {
+  if (munitionsRestantes > 0 && !e.target.classList.contains('zombie')) {
+    munitionsRestantes--;
+    munitionCounter.textContent = munitionsRestantes;
+    addMunitionIcons();
+    // shot.play();
+  }
   if (e.target.classList.contains('zombie')) {
     if (munitionsRestantes > 0) {
       munitionsRestantes--;
@@ -64,6 +70,7 @@ export function handleClick(e) {
         startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
         zombieCount--;
         score++;
+        console.log('score-init', score);
       } else {
         if (currentLevel < 10) {
           currentLevel++;
@@ -85,7 +92,7 @@ export function handleClick(e) {
     startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
 
     if (munitionsRestantes > 0) {
-      shot.play();
+      // shot.play();
       addMunitionIcons();
     }
   }
@@ -114,12 +121,12 @@ export function handleClick(e) {
     zombie.style.width = `${zombieWidth}px`;
     zombie.style.height = `${zombieHeight}px`;
 
-      if (zombieDistance > 65) {
-        videoContainer.style.display = 'block';
-        video.autoplay = true;
-        container.style.background = 'rgba(255,0,0,0.5)';
-        zombie.style.display = 'none';
-      }
+    if (zombieDistance > 65) {
+      videoContainer.style.display = 'block';
+      video.autoplay = true;
+
+      zombie.style.display = 'none';
+    }
   };
   zombie.classList.add('zombie-walk');
   setInterval(updateZombieDistance, 1000);
@@ -127,7 +134,7 @@ export function handleClick(e) {
 
 export function incrementZombieCount() {
   zombieCount++;
-  console.log(zombieCount);
+  // console.log(zombieCount);
 }
 
 export function zombieMaker(distance = 55, width = 50, height = 50) {
@@ -149,11 +156,13 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       setTimeout(function () {
         blood.style.display = 'none';
       }, 500);
-      score++;
+
       button.innerHTML = 'Score ' + score;
       zombieCount--;
-      shot.play();
+      // shot.play();
       img.style.display = 'none';
+
+      console.log('score-deuxieme', score);
     });
   }
 
@@ -164,15 +173,15 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
     img.style.top = `${distance}%`;
     img.style.width = `${width}px`;
     img.style.height = `${height}px`;
-    console.log('distance', distance);
+    // console.log('distance', distance);
 
     if (distance > 65) {
-      console.log("distance",distance)
-     
+      //   console.log('distance', distance);
+
       videoContainer.style.display = 'block';
       video.autoplay = true;
-      container.style.background = 'rgba(255,0,0,0.5)';
-      // img.style.display = 'none';
+
+      img.style.display = 'none';
     }
   };
 
@@ -190,8 +199,8 @@ function displayBullet() {
 
     setTimeout(function () {
       displayBullet();
-    }, 5000);
-  }, 5000);
+    }, 3000);
+  }, 3000);
 }
 
 // Gestion du tir sur la grosse munition
