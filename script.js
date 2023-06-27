@@ -9,7 +9,6 @@ const muteButtonPicture = document.querySelector('.mute-button-picture');
 const unmuteButtonPicture = document.querySelector('.unmute-button-picture');
 import { handleMouseMove } from './mouseMove.js';
 
-import { bullet } from './elements/bullet.js';
 import { smallBullet } from './elements/smallBullet.js';
 import { munitionContainer } from './elements/munitionContainer.js';
 import { munitionCounter } from './elements/munitionCounter.js';
@@ -87,9 +86,7 @@ startButton.addEventListener('click', function () {
     if (cursor) {
       cursor.style.opacity = '0';
     }
-    if (bullet) {
-      bullet.style.opacity = '0';
-    }
+
     if (smallBullet) {
       smallBullet.style.opacity = '0';
     }
