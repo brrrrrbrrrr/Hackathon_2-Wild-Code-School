@@ -124,7 +124,11 @@ export function handleClick(e) {
     if (zombieDistance > 65) {
       videoContainer.style.display = 'block';
       video.autoplay = true;
+<<<<<<< HEAD
       // container.style.background = 'rgba(255,0,0,0.5)';
+=======
+      container.style.background = 'rgba(255,0,0,0.5)';
+>>>>>>> dev
       zombie.style.display = 'none';
     }
   };
@@ -180,7 +184,11 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
 
       videoContainer.style.display = 'block';
       video.autoplay = true;
+<<<<<<< HEAD
       // container.style.background = 'rgba(255,0,0,0.5)';
+=======
+      container.style.background = 'rgba(255,0,0,0.5)';
+>>>>>>> dev
       img.style.display = 'none';
     }
   };
