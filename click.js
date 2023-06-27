@@ -114,12 +114,12 @@ export function handleClick(e) {
     zombie.style.width = `${zombieWidth}px`;
     zombie.style.height = `${zombieHeight}px`;
 
-      if (zombieDistance > 65) {
-        videoContainer.style.display = 'block';
-        video.autoplay = true;
-        container.style.background = 'rgba(255,0,0,0.5)';
-        zombie.style.display = 'none';
-      }
+    if (zombieDistance > 65) {
+      videoContainer.style.display = 'block';
+      video.autoplay = true;
+      container.style.background = 'rgba(255,0,0,0.5)';
+      zombie.style.display = 'none';
+    }
   };
   zombie.classList.add('zombie-walk');
   setInterval(updateZombieDistance, 1000);
@@ -167,12 +167,12 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
     console.log('distance', distance);
 
     if (distance > 65) {
-      console.log("distance",distance)
-     
+      console.log('distance', distance);
+
       videoContainer.style.display = 'block';
       video.autoplay = true;
       container.style.background = 'rgba(255,0,0,0.5)';
-      // img.style.display = 'none';
+      img.style.display = 'none';
     }
   };
 
