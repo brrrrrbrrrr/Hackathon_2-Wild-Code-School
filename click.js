@@ -7,8 +7,7 @@ import { reload } from './elements/reload.js';
 import { shellCasing } from './elements/shellCasing.js';
 import { video } from './elements/video.js';
 import { videoContainer } from './elements/videoContainer.js';
-import crySounds from './elements/cry.js'
-
+import crySounds from './elements/cry.js';
 
 function playRandomCry(sounds) {
   const randomIndex = Math.floor(Math.random() * sounds.length);
@@ -78,8 +77,6 @@ export function handleClick(e) {
         blood.style.display = 'none';
       }, 500);
       if (score < targetScore) {
-        console.log('pwet');
-
         addMunitionIcons();
         e.target.style.display = 'none';
         startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
@@ -187,11 +184,8 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
     img.style.top = `${distance}%`;
     img.style.width = `${width}px`;
     img.style.height = `${height}px`;
-    // console.log('distance', distance);
 
     if (distance > 65) {
-      //   console.log('distance', distance);
-
       videoContainer.style.display = 'block';
       video.autoplay = true;
 
@@ -217,16 +211,14 @@ function displayBullet() {
   }, 3000);
 }
 
-
 bullet.addEventListener('click', function () {
   shot.volume = 0;
   setTimeout(function () {
     shot.volume = 1;
   }, 700);
-})
+});
 // Gestion du tir sur la grosse munition
 bullet.addEventListener('click', function () {
-
   munitionsRestantes += 10;
   munitionCounter.textContent = munitionsRestantes;
   bullet.style.display = 'none';

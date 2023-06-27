@@ -8,10 +8,16 @@ let gameOver = false;
 
 let gameInterval;
 
-
 export function initializeGame() {
   button.addEventListener('click', function () {
     window.addEventListener('mousemove', handleMouseMove);
+    if (zombieLimit === 5) {
+      const orangeDiv = document.createElement('div');
+      orangeDiv.style.backgroundColor = 'orange';
+      orangeDiv.style.width = '100px';
+      orangeDiv.style.height = '100px';
+      document.body.appendChild(orangeDiv);
+    }
 
     gameInterval = setInterval(() => {
       if (!gameOver && getZombieCount() <= zombieLimit) {
@@ -22,6 +28,7 @@ export function initializeGame() {
     }, 1000);
     window.addEventListener('click', (e) => {
       handleClick(e);
+      console.log('zombieLimit', zombieLimit);
     });
 
     window.addEventListener('load', function () {
