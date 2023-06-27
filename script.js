@@ -59,7 +59,7 @@ startButton.addEventListener('click', function () {
     });
 
     window.addEventListener('click', function (e) {
-        shot.play();
+        // shot.play();
 
         if (e.target.classList.contains("zombie")) {
             blood.style.display = 'block';

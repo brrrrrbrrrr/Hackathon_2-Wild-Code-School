@@ -5,11 +5,13 @@ import { zombie } from './elements/zombie.js';
 import { bullet } from './elements/bullet.js';
 import { reload } from './elements/reload.js';
 
+
 let score = 0;
 let totalMunitions = 20;
 let munitionsRestantes = totalMunitions;
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
+
 function addMunitionIcons() {
   const munitionContainer = document.querySelector('.munition-container');
 
@@ -31,6 +33,7 @@ export function handleClick(e) {
     munitionCounter.textContent = munitionsRestantes;
 
     if (e.target.classList.contains('zombie')) {
+      blood.play();
       blood.style.display = 'block';
       blood.style.left = e.pageX + 'px';
       blood.style.top = e.pageY + 'px';
@@ -100,6 +103,8 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       score++;
       button.innerHTML = 'Score ' + score;
       shot.play();
+
+
       img.style.display = 'none';
     });
   }
