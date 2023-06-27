@@ -1,7 +1,6 @@
 const cursor = document.querySelector('.cursor');
 
 const body = document.querySelector('body');
-
 const soundtrack = document.querySelector('.soundtrack');
 const startButton = document.getElementById('start-game-button');
 const muteButton = document.getElementById('mute-button');

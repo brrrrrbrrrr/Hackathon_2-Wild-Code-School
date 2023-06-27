@@ -8,11 +8,17 @@ const startButton = document.getElementById('start-game-button');
 const container = document.querySelector('.container');
 const body = document.querySelector('body');
 
+export function getZombieCount() {
+  return zombieCount;
+}
+
 let score = 0;
 let totalMunitions = 20;
 let targetScore = 10;
 let currentLevel = 1;
 let munitionsRestantes = totalMunitions;
+export let zombieLimit = 5;
+let zombieCount = 0;
 const munitionCounter = document.getElementById('munition-counter');
 munitionCounter.textContent = munitionsRestantes;
 function addMunitionIcons() {
@@ -50,10 +56,12 @@ export function handleClick(e) {
       }, 500);
       if (score < targetScore) {
         console.log('pwet');
-        score++;
+
         addMunitionIcons();
         e.target.style.display = 'none';
         startButton.innerHTML = 'Level ' + currentLevel + ' Score ' + score;
+        zombieCount--;
+        score++;
       } else {
         if (currentLevel < 10) {
           currentLevel++;
@@ -108,8 +116,12 @@ export function handleClick(e) {
   setInterval(updateZombieDistance, 1000);
 }
 
+export function incrementZombieCount() {
+  zombieCount++;
+  console.log(zombieCount);
+}
+
 export function zombieMaker(distance = 55, width = 50, height = 50) {
-  console.log('toto');
   let img = document.createElement('img');
   img.src = 'clicker.png';
   document.body.appendChild(img);
@@ -130,6 +142,7 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
       }, 500);
       score++;
       button.innerHTML = 'Score ' + score;
+      zombieCount--;
       shot.play();
       img.style.display = 'none';
     });
@@ -145,6 +158,8 @@ export function zombieMaker(distance = 55, width = 50, height = 50) {
   };
 
   setInterval(updateZombieDistance, 1000);
+
+  incrementZombieCount();
 }
 
 // Fonction pour afficher la grosse munition et gérer les interactions
